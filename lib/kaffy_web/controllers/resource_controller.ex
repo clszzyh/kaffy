@@ -360,6 +360,10 @@ defmodule KaffyWeb.ResourceController do
         put_flash(conn, :success, "Action performed successfully")
         |> redirect(to: Kaffy.Utils.router().kaffy_resource_path(conn, :index, context, resource))
 
+      {:ok, msg} when is_binary(msg) ->
+        put_flash(conn, :success, msg)
+        |> redirect(to: Kaffy.Utils.router().kaffy_resource_path(conn, :index, context, resource))
+
       {:error, error_msg} ->
         put_flash(conn, :error, error_msg)
         |> redirect(to: Kaffy.Utils.router().kaffy_resource_path(conn, :index, context, resource))
