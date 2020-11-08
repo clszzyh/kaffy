@@ -1,31 +1,8 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card shadow mb-4">
-    <div class="card-header">
-      <div class="row justify-content-between">
-        <div class="col-auto mr-auto">
-          <h3>
-            <%= Kaffy.ResourceAdmin.plural_name(@my_resource) %><br/>
-            <span class="badge badge-secondary">(~ <%= @filtered_count %> records)</span>
-            <div id="checkbox-selected-count" class="checkbox-selected-count float-right"></div>
-          </h3>
-        </div>
-        <div class="col-auto">
-          <%= link to: Kaffy.Utils.router().kaffy_resource_path(@conn, :new, @context, @resource), class: "btn btn-outline-primary" do %>
-            <i class="fas fa-plus"></i>
-            New <%= Kaffy.ResourceAdmin.singular_name(@my_resource) %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
     <div class="card-body table-responsive w-100">
       <div class="card-description">
         <div class="row">
-
-          <div class="col-auto mr-auto">
-            <input id="kaffy-search-field" type="text" name="search" value="<%= Map.get(@params, "search", "") %>" class="form-control bg-transparent" placeholder="Search <%= Kaffy.ResourceAdmin.plural_name(@my_resource) %>...">
-          </div>
-
           <div class="col-auto">
             <%= if list_actions = Kaffy.ResourceAdmin.list_actions(@my_resource, @conn) do %>
               <div class="btn-group">
