@@ -343,7 +343,7 @@ defmodule KaffyWeb.ResourceController do
         %{"context" => context, "resource" => resource, "action_key" => action_key} = params
       ) do
     my_resource = Kaffy.Utils.get_resource(conn, context, resource)
-    ids = Map.get(params, "ids", "") |> String.split(",")
+    ids = Map.get(params, "ids", "") |> String.split(",") |> Enum.reject(&match?("", &1))
     entries = Kaffy.ResourceQuery.fetch_list(my_resource, ids)
     actions = Kaffy.ResourceAdmin.list_actions(my_resource, conn)
     action_record = get_action_record(actions, action_key)
